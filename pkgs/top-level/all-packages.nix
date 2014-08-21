@@ -4181,6 +4181,8 @@ let
 
   texi2html = callPackage ../development/tools/misc/texi2html { };
 
+  ubiprof = callPackage ../development/tools/profiling/ubiprof { };
+
   uhd = callPackage ../development/tools/misc/uhd { };
 
   uisp = callPackage ../development/tools/misc/uisp { };
