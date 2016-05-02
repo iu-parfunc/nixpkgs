@@ -10,15 +10,13 @@ in stdenv.mkDerivation rec {
     sha256 = "01sc85ifwdg87jvcgkkqmjg09j2h1d9i1y5vb3lifhrq6za399bs";
   };
 
-  builder = ./build_hpx_in_nix.sh;
-
   enableParallelBuilding = true;
   
-  preBuild = ''
+  preConfigure = ''
     cd hpx/
   '';
-      
-  nativeBuildInputs = [ stdenv perl ];
+
+  nativeBuildInputs = [ stdenv ];
 
   meta = {
     homepage = https://hpx.crest.iu.edu/;
