@@ -11,7 +11,7 @@ in stdenv.mkDerivation rec {
   name = "hpx-${hpxVersion}";
 
   src = fetchurl {
-    url = http://hpx.crest.iu.edu/release/hpx-2.2.0.tar.gz;
+    url = "http://hpx.crest.iu.edu/release/${name}.tar.gz";
     sha256 = "01sc85ifwdg87jvcgkkqmjg09j2h1d9i1y5vb3lifhrq6za399bs";
   };
 
