@@ -2011,6 +2011,8 @@ let
 
   hping = callPackage ../tools/networking/hping { };
 
+  hpx = callPackage ../development/libraries/hpx { };
+  
   httpie = callPackage ../tools/networking/httpie { };
 
   httping = callPackage ../tools/networking/httping {};
