@@ -1,4 +1,9 @@
-{stdenv, fetchurl, perl }:
+{stdenv, fetchurl, perl
+# Turn on debugging
+, enableDebug ? false
+}:
+
+with stdenv.lib;
 
 let hpxVersion = "2.2.0";
 
@@ -18,6 +23,10 @@ in stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ stdenv ];
 
+  configureFlags = ["-g", "--enable-shared"]
+    ++ optional enableDebug "--enable-debug"
+    ;
+      
   meta = {
     homepage = https://hpx.crest.iu.edu/;
     description = "Open source High Performance paralleX implementation";
