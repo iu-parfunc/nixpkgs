@@ -5,14 +5,14 @@
 
 with stdenv.lib;
 
-let hpxVersion = "2.2.0";
+let hpxVersion = "3.0.0";
 
 in stdenv.mkDerivation rec {       
   name = "hpx-${hpxVersion}";
 
   src = fetchurl {
     url = "http://hpx.crest.iu.edu/release/${name}.tar.gz";
-    sha256 = "01sc85ifwdg87jvcgkkqmjg09j2h1d9i1y5vb3lifhrq6za399bs";
+    sha256 = "07l58hvnn0miy45ahvq2aa98cwy65bfgjfs9km4vhk480m6r544m";
   };
 
   enableParallelBuilding = true;
