@@ -23,7 +23,7 @@ in stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ stdenv ];
 
-  configureFlags = [ "CFLAGS=-g" "--enable-shared" ]
+  configureFlags = [ "CFLAGS=-g" "--enable-shared" "--enable-static" ]
     ++ optional enableDebug "--enable-debug"
     ;
       
