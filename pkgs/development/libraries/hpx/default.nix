@@ -1,6 +1,5 @@
 { stdenv, fetchurl, perl, gcc
 , enableDebug ? false
-, enableShared ? false
 }:
 
 with stdenv.lib;
@@ -26,11 +25,9 @@ in stdenv.mkDerivation rec {
 # "--enable-shared"    
   dontDisableStatic = true;
   # Weirdly, --enable-static can't go in configureFlagsArray or gcc is sad:
-  configureFlags = if enableShared 
-                   then [ "--enable-shared" ]
-                   else [ "--enable-static" ];
+  configureFlags = [ "--enable-shared" "--enable-static" ];
   configureFlagsArray =
-     [ "CFLAGS=-g -O3 " # -flto
+     [ "CFLAGS=-g -O3 -fPIC " # -flto
 #       "LDFLAGS=-flto"
 # NOTE: We can't add -flto yet.  gcc-ar and gcc-ranlib are not exposed
 # by the gcc-wrappers package.
