@@ -1,13 +1,13 @@
-{stdenv, fetchurl, perl
-# Turn on debugging
+{ stdenv, fetchurl, perl, gcc
 , enableDebug ? false
+, enableShared ? false
 }:
 
 with stdenv.lib;
 
 let hpxVersion = "3.0.0";
-
-in stdenv.mkDerivation rec {       
+#    pkgs = import nixpkgs;
+in stdenv.mkDerivation rec {
   name = "hpx-${hpxVersion}";
 
   src = fetchurl {
@@ -23,10 +23,20 @@ in stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ stdenv ];
 
-  configureFlags = [ "CFLAGS=-g" "--enable-shared" "--enable-static" ]
-    ++ optional enableDebug "--enable-debug"
-    ;
-      
+# "--enable-shared"    
+  dontDisableStatic = true;
+  # Weirdly, --enable-static can't go in configureFlagsArray or gcc is sad:
+  configureFlags = if enableShared 
+                   then [ "--enable-shared" ]
+                   else [ "--enable-static" ];
+  configureFlagsArray =
+     [ "CFLAGS=-g -O3 " # -flto
+#       "LDFLAGS=-flto"
+# NOTE: We can't add -flto yet.  gcc-ar and gcc-ranlib are not exposed
+# by the gcc-wrappers package.
+#       ("AR="+ gcc + "/bin/gcc-ar")
+     ] ++ optional enableDebug [ "--enable-debug" ];
+     
   meta = {
     homepage = https://hpx.crest.iu.edu/;
     description = "Open source High Performance paralleX implementation";
@@ -35,4 +45,3 @@ HPX-5 supports a wide variety of Intel and ARM platforms. It is being used by a 
   };
   
 }
-
