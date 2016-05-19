@@ -4679,6 +4679,8 @@ in
 
   mlton = callPackage ../development/compilers/mlton { };
 
+  multimlton = callPackage ../development/compilers/multimlton { };
+
   mono = callPackage ../development/compilers/mono {
     inherit (darwin) libobjc;
     inherit (darwin.apple_sdk.frameworks) Foundation;
