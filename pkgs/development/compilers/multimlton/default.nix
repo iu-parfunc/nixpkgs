@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, patchelf, gmp, mlton }:
+{ stdenv, fetchurl, patchelf, gmp4, mlton }:
 
 let
   version = "20140310";
@@ -21,11 +21,11 @@ stdenv.mkDerivation rec {
   sourceRoot = "multiMLton-1971b0f74f0db4dce9bad077a9c79ee158933510/trunk";
 #  sourceRoot = "trunk";
 
-  buildInputs = [ gmp ] ++ stdenv.lib.optional stdenv.isLinux patchelf;
+  buildInputs = [ gmp4 ] ++ stdenv.lib.optional stdenv.isLinux patchelf;
 
   builder = ./builder.sh;
 
-  inherit stdenv mlton gmp;
+  inherit stdenv mlton gmp4;
 # coreutils autoconf automake 
 
 /*
