@@ -2,12 +2,12 @@
 
 stdenv.mkDerivation rec {
   name = "manticore-${version}";
-  version = "2016-03-08";
+  version = "2016-05-21";
   builder = ./builder.sh;
   src = fetchurl {
-    # trunk branch as of 2016-03-08
-    url = "https://smlnj-gitlab.cs.uchicago.edu/manticore/pmlc/repository/archive.tar.gz?ref=e88675010e18825e888fdefd2f7129c7b4459c08";
-    sha256 = "1nzvmdz8pj935dk05qqw7ychmzpi8rzwxss0k8gjswcxp2f3vl98";
+    # trunk branch as of date = $version
+    url = "https://smlnj-gitlab.cs.uchicago.edu/manticore/pmlc/repository/archive.tar.gz?ref=9af030cec4c85c32ea2da5897344715d89457a68";
+    sha256 = "1phpfn7ns2h59613fcby11w0bgy60mkq11zzayj4zdpnx3nm15if";
   };
   inherit stdenv coreutils autoconf automake smlnj;
 

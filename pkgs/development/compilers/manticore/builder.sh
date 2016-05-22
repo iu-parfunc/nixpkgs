@@ -12,10 +12,14 @@ mkdir -p $out/bin
 # so for now we copy the whole build tree into the store:
 cd $out/
 tar xf $src
-mv pmlc-e88675010e18825e888fdefd2f7129c7b4459c08-e88675010e18825e888fdefd2f7129c7b4459c08 repo_checkout
+mv pmlc-* repo_checkout
 cd repo_checkout/
 # TODO: At the very least, this could probably be cut down to a subset
 # of the repo.
+
+echo "Building manticore version $version"
+# For some reason autoconf isn't getting this:
+sed -i "s/@REVISION@/$version/" ./src/tools/mc/driver/version-fn_sml.in
 
 ${autoconf}/bin/autoheader -Iconfig
 ${autoconf}/bin/autoconf -Iconfig
